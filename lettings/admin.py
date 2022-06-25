@@ -13,4 +13,5 @@ class LettingAdmin(admin.ModelAdmin):
 class AddressAdmin(admin.ModelAdmin):
     list_display = ("number", "street", "city", "state", "zip_code", "country_iso_code")
 
+
 # Register your models here.
