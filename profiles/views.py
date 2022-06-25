@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from .models import Profiles
 
-# Create your views here.
 
 # Sed placerat quam in pulvinar commodo.
 # Nullam laoreet consectetur ex,
@@ -23,5 +22,3 @@ def profile(request, username):
     profile = Profiles.objects.get(user__username=username)
     context = {"profile": profile}
     return render(request, "profiles/profile.html", context)
-
-# Create your views here.
