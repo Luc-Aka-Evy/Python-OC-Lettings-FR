@@ -20,21 +20,24 @@ def test_letting_url(client):
         title="This is Paris",
         address=Address.objects.get(id=1)
         )
-        
+
     path = reverse('letting', kwargs={'letting_id':1})
+    assert path == "/lettings/1/"
     response = client.get(path)
     content = response.content.decode()
     expected_content = "<h1>This is Paris</h1>"
+    assert response.status_code == 200
     assert expected_content in content
 
 
 @pytest.mark.django_db
 def test_index_url(client):
-    url = reverse('lettings_index')
-    assert url == "/lettings/"
-    response = client.get(url)
+    path = reverse('lettings_index')
+    assert path == "/lettings/"
+    response = client.get(path)
     content = response.content.decode()
     expected_content = "<h1>Lettings</h1>"
+    assert response.status_code == 200
     assert expected_content in content
 
     
