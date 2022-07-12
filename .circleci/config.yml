@@ -29,13 +29,6 @@ jobs:
           paths:
             - .
 
-  deploy: # this can be any name you choose
-    executor: python/default
-    steps:
-      - attach_workspace:
-          at: ~/project
-      - heroku/deploy-via-git:
-          force: true
   
   
 # Invoke jobs via workflows
@@ -45,9 +38,3 @@ workflows:
     jobs:
       - build
       - build_and_test
-      - deploy:
-          requires:
-            - build_and_test # only deploy if the build_and_test job has completed
-          filters:
-            branches:
-              only: master # only deploy when on main
