@@ -9,6 +9,8 @@ orbs:
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   build_and_test: # this can be any name you choose
+    docker:
+      - image: python
     executor: python/default # use the default executor defined within the orb
     steps:
       - checkout # checkout source code
