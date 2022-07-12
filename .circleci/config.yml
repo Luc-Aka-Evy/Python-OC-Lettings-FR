@@ -15,27 +15,21 @@ jobs:
     steps:
       - checkout # checkout source code
       - python/install-packages:
-          pkg-manager: pip:22.1.2
+          pkg-manager: pip
+      - run:
+          name: upgrade pip
+          command: pip install --no-cache-dir --upgrade pip
+      - run:
+          name: Install requirements
+          command: pip install --no-cache-dir -r requirements.txt
       - run:
           name: Run tests
           command: python -m pytest
   
-  deploy: # this can be any name you choose
-    executor: heroku/default # use the default executor defined within the orb
-    steps:
-      - attach_workspace:
-          at: ~/project
-      - heroku/deploy-via-git:
-          force: true 
+  
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   Python-OC-Lettings-workflow:
     jobs:
       - build_and_test
-      - deploy:
-          requires:
-            - build_and_test # only deploy if the build_and_test job has completed
-          filters:
-            branches:
-              only: master
