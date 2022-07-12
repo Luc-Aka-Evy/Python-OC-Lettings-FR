@@ -8,6 +8,13 @@ orbs:
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
+  build:
+    docker:
+      - image: cimg/python:3.10.5
+    steps:
+      - checkout
+      - run: python --version
+
   build_and_test: # this can be any name you choose
     executor: python/default # use the default executor defined within the orb
     steps:
@@ -24,4 +31,5 @@ jobs:
 workflows:
   Python-OC-Lettings-workflow:
     jobs:
+      - build
       - build_and_test
