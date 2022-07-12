@@ -15,12 +15,6 @@ jobs:
       - python/install-packages:
           pkg-manager: pip
       - run:
-          name: upgrade pip
-          command: pip install --no-cache-dir --upgrade pip
-      - run:
-          name: Install requirements
-          command: pip install --no-cache-dir -r requirements.txt
-      - run:
           name: Run tests
           command: python -m pytest
   
