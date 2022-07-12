@@ -15,10 +15,7 @@ jobs:
     steps:
       - checkout # checkout source code
       - python/install-packages:
-          pkg-manager: pip
-      - run:
-          name: Install requirements
-          command: pip install --no-cache-dir -r requirements.txt
+          pkg-manager: pip:22.1.2
       - run:
           name: Run tests
           command: python -m pytest
