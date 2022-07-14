@@ -11,9 +11,21 @@ jobs:
   build:
     docker:
       - image: cimg/python:3.10.5
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD 
     steps:
       - checkout
       - run: python --version
+      - setup_remote_docker:
+          version: 20.10.14
+          docker_layer_caching: true
+
+      - run: |
+          TAG=0.1.$CIRCLE_BUILD_NUM
+          docker build -t CircleCI-Public/circleci-demo-docker:$TAG .
+          echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+          docker push CircleCI-Public/circleci-demo-docker:$TAG
 
   build_and_test: # this can be any name you choose
     executor: python/default # use the default executor defined within the orb
@@ -24,11 +36,10 @@ jobs:
       - run:
           name: Run tests
           command: python -m pytest
-      - persist_to_workspace:
-          root: ~/project
-          paths:
-            - .
-
+      - run:
+          name: Linting
+          comand: flake8
+     
   
   
 # Invoke jobs via workflows
