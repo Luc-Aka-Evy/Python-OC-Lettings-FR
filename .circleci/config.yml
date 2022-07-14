@@ -31,13 +31,10 @@ jobs:
           command: python -m pytest
       - run:
           name: Linting
+          working_directory: ~/workspace/src
           command: |
-            . venv/bin/activate
-            pip3 install flake8==4.0.1
-            flake8
-      - store_artifacts:
-          path: test-reports
-          destination: test-report
+            mkdir -p test-reports/flake8
+            flake8 . --output-file=test-reports/flake8/flake8.txt
           
      
   build:
