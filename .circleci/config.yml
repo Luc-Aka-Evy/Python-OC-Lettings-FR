@@ -39,7 +39,7 @@ jobs:
   build:
     docker:
       - image: cimg/python:3.10.5
-         auth:
+      - auth:
           username: mydockerhub-user  # can specify string literal values
           password: $DOCKERHUB_PASSWORD
     steps:
