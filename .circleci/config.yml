@@ -45,7 +45,7 @@ jobs:
           version: 20.10.14
           docker_layer_caching: true
 
-      - run: echo "DOCKERHUB_PASSWORD" | docker login -u DOCKER_USER -p DOCKER_PASSWORD
+      - run: echo "DOCKERHUB_PASSWORD" | docker login -u MRaka -p Onepiece1
           
       - run:  docker build -t oc-lettings:latest .
       - run:  docker push oc-lettings:latest
