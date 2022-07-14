@@ -19,7 +19,7 @@ jobs:
           command: python -m pytest
       - run:
           name: Linting
-          comand: flake8
+          command: flake8
      
   build:
     docker:
