@@ -45,8 +45,7 @@ jobs:
           version: 20.10.14
           docker_layer_caching: true
 
-      - run: |
-           echo "$DOCKERHUB_PASSWORD" | docker login --username $DOCKERHUB_USERNAME --password-stdin
+      - run: echo "$DOCKERHUB_PASSWORD" | docker login --username $DOCKERHUB_USERNAME --password-stdin
           
       - run:  docker build -t oc-lettings:latest .
       - run:  docker push oc-lettings:latest
@@ -61,3 +60,6 @@ workflows:
     jobs:
       - build_and_test
       - build
+        requires:
+          - build_and_test
+        
