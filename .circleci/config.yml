@@ -32,12 +32,12 @@ jobs:
           name: Linting
           command: |
             . venv/bin/activate
-            flake8 ./ tests --output-file test-reports
+            pip3 install flake8==4.0.1
+            flake8
       - store_artifacts:
           path: test-reports
           destination: test-report
-          override:
-              - flake8 ./
+          
      
   build:
     docker:
