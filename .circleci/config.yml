@@ -47,9 +47,9 @@ jobs:
 
       - run: echo "DOCKERHUB_PASSWORD" | docker login -u mraka -p Onepiece1
           
-      - run:  docker build -t oc-lettings:latest .
-      - run:  docker push oc-lettings:latest
-
+      - run:  docker build -t oc-lettings .
+      - run:  docker tag oc-lettings:latest mraka/oc-lettings:latest
+      - run:  docker push  mraka/oc-lettings:latest
   
   
   
