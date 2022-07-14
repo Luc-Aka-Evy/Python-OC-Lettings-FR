@@ -8,24 +8,6 @@ orbs:
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  build:
-    docker:
-      - image: cimg/python:3.10.5
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD 
-    steps:
-      - checkout
-      - setup_remote_docker:
-          version: 20.10.14
-          docker_layer_caching: true
-
-      - run: |
-          TAG=0.1.$CIRCLE_BUILD_NUM
-          docker build -t CircleCI-Public/circleci-demo-docker:$TAG .
-          echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-          docker push CircleCI-Public/circleci-demo-docker:$TAG
-
   build_and_test: # this can be any name you choose
     executor: python/default # use the default executor defined within the orb
     steps:
@@ -39,6 +21,26 @@ jobs:
           name: Linting
           comand: flake8
      
+  build:
+    docker:
+      - image: cimg/python:3.10.5
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD 
+    steps:
+      - checkout
+      - run: python --version
+      - setup_remote_docker:
+          version: 20.10.14
+          docker_layer_caching: true
+
+      - run: |
+          TAG=0.1.$CIRCLE_BUILD_NUM
+          docker build -t CircleCI-Public/circleci-demo-docker:$TAG .
+          echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+          docker push CircleCI-Public/circleci-demo-docker:$TAG
+
+  
   
   
 # Invoke jobs via workflows
@@ -46,5 +48,5 @@ jobs:
 workflows:
   Python-OC-Lettings-workflow:
     jobs:
-      - build
       - build_and_test
+      - build
