@@ -39,16 +39,14 @@ jobs:
   build:
     docker:
       - image: cimg/python:3.10.5
+         auth:
+          username: mydockerhub-user  # can specify string literal values
+          password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
       - setup_remote_docker:
           version: 20.10.14
           docker_layer_caching: true
-
-      - run: echo "DOCKERHUB_PASSWORD" | docker login --username DOCKERHUB_USERNAME --password-stdin
-          
-      - run:  docker build -t oc-lettings:latest .
-      - run:  docker push oc-lettings:latest
 
   
   
@@ -60,5 +58,8 @@ workflows:
     jobs:
       - build_and_test
       - build:
+          context:
+            - build-env-vars
+            - docker-hub-creds
           requires:
               - build_and_test
