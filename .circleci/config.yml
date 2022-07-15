@@ -45,11 +45,11 @@ jobs:
           version: 20.10.14
           docker_layer_caching: true
 
-      - run: echo "DOCKERHUB_PASSWORD" | docker login -u mraka -p Onepiece1
+      - run: echo "DOCKERHUB_PASSWORD" | docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
           
       - run:  docker build -t oc-lettings .
-      - run:  docker tag oc-lettings:latest mraka/oc-lettings:latest
-      - run:  docker push  mraka/oc-lettings:latest
+      - run:  docker tag oc-lettings:latest $USERNAME/oc-lettings:latest
+      - run:  docker push  $USERNAME/oc-lettings:latest
   
   
   
@@ -62,3 +62,6 @@ workflows:
       - build:
           requires:
               - build_and_test
+          filters:
+              braches:
+                  only: master
