@@ -39,7 +39,6 @@ jobs:
   build:
     docker:
       - image: cimg/python:3.10.5
-      - tty: true
     steps:
       - checkout
       - setup_remote_docker:
@@ -63,4 +62,7 @@ workflows:
       - build:
           requires:
               - build_and_test
+            filters:
+                branches:
+                    only: matser
           
