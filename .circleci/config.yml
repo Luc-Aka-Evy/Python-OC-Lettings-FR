@@ -62,7 +62,4 @@ workflows:
       - build:
           requires:
               - build_and_test
-            filters:
-                branches:
-                    only: matser
           
