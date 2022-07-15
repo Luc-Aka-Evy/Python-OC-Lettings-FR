@@ -69,6 +69,12 @@ workflows:
   Python-OC-Lettings-workflow:
     jobs:
       - build_and_test
+      - build:
+           requires:
+             - build_and_test
+            filters:
+             branches:
+               only: master 
       - deploy:
            requires:
              - build_and_test
