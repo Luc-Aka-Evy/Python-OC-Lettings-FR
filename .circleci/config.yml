@@ -62,6 +62,4 @@ workflows:
       - build:
           requires:
               - build_and_test
-          filters:
-              braches:
-                  only: master
+          
