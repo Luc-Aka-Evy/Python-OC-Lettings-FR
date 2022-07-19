@@ -1,0 +1,32 @@
+version: '3.9'
+services:
+  db:
+    image: nouchka/sqlite3:latest
+    volumes:
+      - "db_data:/var/lib/sqlite3"
+    restart: always
+    environment:
+      SQLITE_ROOT_PASSWORD: oc
+      SQLITE_DATABASE: oc_lettings
+      SQLITE_USER: oc_lettings
+      SQLITE_PASSWORD: oc_lettings
+    
+
+  oc_lettings:
+    depends_on:
+      - db
+    image: oc-lettings:latest
+    ports:
+      - "8000:80"
+    restart: always
+    environment:
+      OC_LETTINGS_DB_HOST: db:3306
+      OC_LETTINGS_DB_USER: oc_lettings
+      OC_LETTINGS_DB_PASSWORD: oc_lettings
+      OC_LETTINGS_DB_NAME: oc_lettings
+
+volumes:
+  db_data: {}
+
+  
+  
