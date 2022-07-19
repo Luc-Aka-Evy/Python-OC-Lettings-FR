@@ -1,6 +1,7 @@
 asgiref==3.5.2
 attrs==21.4.0
-backports.zoneinfo==0.2.1;python_version<"3.9"
+backports.zoneinfo==0.2.1
+certifi==2022.6.15
 Django==4.0.5
 entrypoints==0.3
 flake8==4.0.1
@@ -15,5 +16,7 @@ pyparsing==3.0.9
 pytest==7.1.2
 pytest-django==4.5.2
 pytz==2022.1
+sentry-sdk==1.7.2
 sqlparse==0.4.2
 tomli==2.0.1
+urllib3==1.26.10
