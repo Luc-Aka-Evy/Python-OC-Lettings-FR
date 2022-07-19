@@ -1,11 +1,11 @@
-FROM python:3.8-slim-buster
+FROM python:3.8
+ENV PYTHONUNBUFFERED 1
 
-ADD . /app/
+RUN mkdir /app
 WORKDIR /app
+COPY requirements.txt /app/
 
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
+COPY . /app/
 
-COPY . .
-
-CMD [ "python3", "manage.py" , "runserver"]
+CMD ["python3", "manage.py", "runserver"]
