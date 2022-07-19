@@ -48,8 +48,8 @@ jobs:
       - run: echo "DOCKERHUB_PASSWORD" | docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
           
       - run:  docker build -t oc-lettings .
-      - run:  docker tag oc-lettings:latest $USERNAME/oc-lettings:$CIRCLE_SHA1
-      - run:  docker push  $USERNAME/oc-lettings:latest
+      - run:  docker tag oc-lettings:$CIRCLE_SHA1 $USERNAME/oc-lettings
+      - run:  docker push  $USERNAME/oc-lettings
 
   deploy:
     docker:
