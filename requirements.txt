@@ -1,6 +1,6 @@
 asgiref==3.5.2
 attrs==21.4.0
-backports.zoneinfo==0.2.1
+backports.zoneinfo==0.2.1;python_version<"3.9"
 certifi==2022.6.15
 Django==4.0.5
 entrypoints==0.3
