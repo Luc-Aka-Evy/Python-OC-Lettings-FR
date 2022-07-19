@@ -3,16 +3,16 @@ services:
   db:
     image: nouchka/sqlite3:latest
     ports:
-      - 6379:6379
+      - 5000:5000
 
   oc_lettings:
     build: .
-    command: python3 manage.py runserver 0.0.0.0:8000
+    command: python3 manage.py runserver
     depends_on:
       - db
     image: mraka/oc-lettings:latest
     ports:
-      - "8000:8000"
+      - "5000:5000"
     volumes:
       -.:/app
     restart: always
