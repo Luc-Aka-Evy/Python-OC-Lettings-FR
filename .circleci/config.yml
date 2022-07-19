@@ -49,7 +49,7 @@ jobs:
           
       - run:  docker build -t oc-lettings:$CIRCLE_SHA1 .
       - run:  docker tag oc-lettings:$CIRCLE_SHA1 $USERNAME/oc-lettings:$CIRCLE_SHA1
-      - run:  docker push  $USERNAME/oc-lettings
+      - run:  docker push  $USERNAME/oc-lettings:$CIRCLE_SHA1
 
   deploy:
     docker:
