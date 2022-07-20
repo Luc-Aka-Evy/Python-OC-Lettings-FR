@@ -61,21 +61,6 @@ jobs:
            command: |
              git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
   
-  sentry-release:
-    docker:
-      - image: cimg/python:3.10.5
-    steps:
-      - checkout
-      - run:
-          name: Install Sentry cli
-          command: curl -sL https://sentry.io/get-cli/ | SENTRY_CLI_VERSION="2.4.1" bash
-      - run:
-          name: Deploy new release
-          command: |
-            sentry-cli releases -p $SENTRY_PROJECT new $CIRCLE_SHA1
-            sentry-cli releases -p $SENTRY_PROJECT set-commits --auto $CIRCLE_SHA1
-            sentry-cli releases -p $SENTRY_PROJECT finalize $CIRCLE_SHA1
-  
   
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -96,11 +81,4 @@ workflows:
           filters:
              branches:
                only: master 
-      - sentry-release:
-          requires:
-             - build_and_test
-             - build 
-             - deploy # only run deploy-via-git job if the build job has completed
-          filters:
-             branches:
-               only: master 
+    
