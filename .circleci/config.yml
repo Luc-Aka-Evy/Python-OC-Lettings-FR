@@ -39,6 +39,13 @@ jobs:
   build:
     docker:
       - image: cimg/python:3.10.5
+    environment:
+      SENTRY_ORG: $SENTRY_ORG
+      SENTRY_PROJECT: $SENTRY_PROJECT
+    branches:
+      only:
+        - master
+
     steps:
       - checkout
       - setup_remote_docker:
@@ -50,15 +57,6 @@ jobs:
       - run:  docker build -t oc-lettings:$CIRCLE_SHA1 .
       - run:  docker tag oc-lettings:$CIRCLE_SHA1 $USERNAME/oc-lettings
       - run:  docker push  $USERNAME/oc-lettings
-
-    environment:
-      SENTRY_ORG: $SENTRY_ORG
-      SENTRY_PROJECT: $SENTRY_PROJECT
-    branches:
-      only:
-        - master
-    steps:
-      - checkout # check out the code in the project directory
       - run: | 
           curl -sL https://sentry.io/get-cli/ | bash
           export SENTRY_RELEASE=$(sentry-cli releases propose-version)
