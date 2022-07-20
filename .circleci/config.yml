@@ -68,7 +68,7 @@ jobs:
       - checkout
       - run:
           name: Install Sentry cli
-          command: brew install getsentry/tools/sentry-cli
+          command: curl -sL https://sentry.io/get-cli/ | SENTRY_CLI_VERSION="2.4.1" bash
       - run:
           name: Deploy new release
           command: |
