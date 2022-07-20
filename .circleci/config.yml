@@ -51,6 +51,22 @@ jobs:
       - run:  docker tag oc-lettings:$CIRCLE_SHA1 $USERNAME/oc-lettings
       - run:  docker push  $USERNAME/oc-lettings
 
+    environment:
+      SENTRY_ORG: $SENTRY_ORG
+      SENTRY_PROJECT: $SENTRY_PROJECT
+    branches:
+      only:
+        - master
+    steps:
+      - checkout # check out the code in the project directory
+      - run: | 
+          curl -sL https://sentry.io/get-cli/ | bash
+          export SENTRY_RELEASE=$(sentry-cli releases propose-version)
+          sentry-cli releases new -p $SENTRY_PROJECT $SENTRY_RELEASE
+          sentry-cli releases set-commits --auto $SENTRY_RELEASE
+          sentry-cli releases finalize $SENTRY_RELEASE
+
+
   deploy:
     docker:
       - image: cimg/python:3.10.5
