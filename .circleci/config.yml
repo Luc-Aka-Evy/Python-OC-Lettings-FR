@@ -72,9 +72,9 @@ jobs:
       - run:
           name: Deploy new release
           command: |
-            sentry-cli releases -p ${SENTRY_PROJECT} new ${CIRCLE_SHA1}
-            sentry-cli releases -p ${SENTRY_PROJECT} set-commits --auto ${CIRCLE_SHA1}
-            sentry-cli releases -p ${SENTRY_PROJECT} finalize ${CIRCLE_SHA1}
+            sentry-cli releases -p $SENTRY_PROJECT new $CIRCLE_SHA1
+            sentry-cli releases -p $SENTRY_PROJECT set-commits --auto $CIRCLE_SHA1
+            sentry-cli releases -p $SENTRY_PROJECT finalize $CIRCLE_SHA1
   
   
 # Invoke jobs via workflows
