@@ -97,7 +97,6 @@ workflows:
            filters:
              branches:
                only: master 
-
       - sentry-release:
             requires:
              - build_and_test
