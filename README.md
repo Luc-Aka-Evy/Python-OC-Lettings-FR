@@ -18,7 +18,7 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 #### Cloner le repository
 
 - `cd /path/to/put/project/in`
-- `git clone https://github.com/OpenClassrooms-Student-Center/Python-OC-Lettings-FR.git`
+- `git clone https://github.com/Luc-Aka-Evy/Python-OC-Lettings-FR.git`
 
 #### Créer l'environnement virtuel
 
@@ -59,9 +59,9 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 - Ouvrir une session shell `sqlite3`
 - Se connecter à la base de données `.open oc-lettings-site.sqlite3`
 - Afficher les tables dans la base de données `.tables`
-- Afficher les colonnes dans le tableau des profils, `pragma table_info(Python-OC-Lettings-FR_profile);`
+- Afficher les colonnes dans le tableau des profils, `pragma table_info(profiles_profiles);`
 - Lancer une requête sur la table des profils, `select user_id, favorite_city from
-  Python-OC-Lettings-FR_profile where favorite_city like 'B%';`
+  profiles_profiles where favorite_city like 'B%';`
 - `.quit` pour quitter
 
 #### Panel d'administration
@@ -75,3 +75,12 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 
 - Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
+
+#### Déploiement
+
+### Prérequis
+
+- [CircleCI](https://circleci.com/signup/?utm_source=google&utm_medium=sem&utm_campaign=sem-google-dg--emea-en-dsa-maxConv-auth-nb&utm_term=g_-_c__dsa_&utm_content=&gclid=Cj0KCQjwlemWBhDUARIsAFp1rLXh3RH0rSg4vZNsF2XIt81wFvVdW-j33Kf22GMPybF-Dps_WXVtYOAaArUAEALw_wcB)
+- Docker et compte Docker Hub
+- Compte Heroku
+- Heroku CLI
