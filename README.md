@@ -81,6 +81,9 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 ### Prérequis
 
 - [CircleCI](https://circleci.com/signup/?utm_source=google&utm_medium=sem&utm_campaign=sem-google-dg--emea-en-dsa-maxConv-auth-nb&utm_term=g_-_c__dsa_&utm_content=&gclid=Cj0KCQjwlemWBhDUARIsAFp1rLXh3RH0rSg4vZNsF2XIt81wFvVdW-j33Kf22GMPybF-Dps_WXVtYOAaArUAEALw_wcB)
-- Docker et compte Docker Hub
-- Compte Heroku
+- Un compte [Docker Hub](https://hub.docker.com/)
+- Docker [Version Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac), [Version Windows](https://hub.docker.com/editions/community/docker-ce-desktop-windows)
+- Compte [Heroku](https://signup.heroku.com/)
 - Heroku CLI
+- Compte [Sentry
+](https://sentry.io/signup/)
