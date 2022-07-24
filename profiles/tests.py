@@ -6,13 +6,14 @@ import pytest
 
 # Create your tests here.
 
+
 @pytest.mark.django_db
 def test_index_url(client):
-    path = reverse('profiles_index')
+    path = reverse("profiles_index")
     assert path == "/profiles/"
     response = client.get(path)
     content = response.content.decode()
-    expected_content = "<h1>Profiles</h1>"
+    expected_content = "<title>Profiles</title>"
     assert response.status_code == 200
     assert expected_content in content
 
@@ -24,18 +25,15 @@ def test_profile_url(client):
         first_name="John",
         last_name="Doe",
         email="johndoe@hotmail.com",
-        password="unknow"
-        )
+        password="unknow",
+    )
 
-    Profiles.objects.create(
-        user=User.objects.get(id=1),
-        favorite_city="Paris"
-        )
+    Profiles.objects.create(user=User.objects.get(id=1), favorite_city="Paris")
 
-    path = reverse('profile', kwargs={'username':'JohnDoe'})
+    path = reverse("profile", kwargs={"username": "JohnDoe"})
     assert path == "/profiles/JohnDoe/"
     response = client.get(path)
     content = response.content.decode()
-    expected_content = "<h1>JohnDoe</h1>"
+    expected_content = "<title>JohnDoe</title>"
     assert response.status_code == 200
     assert expected_content in content

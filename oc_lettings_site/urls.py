@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 from . import views
 import lettings.views
@@ -12,4 +14,4 @@ urlpatterns = [
     path("profiles/", profiles.views.index, name="profiles_index"),
     path("profiles/<str:username>/", profiles.views.profile, name="profile"),
     path("admin/", admin.site.urls),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
