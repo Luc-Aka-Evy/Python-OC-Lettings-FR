@@ -1,5 +1,6 @@
 from django.urls import reverse
 
+
 # Create your tests here.
 def test_index_url(client):
     path = reverse("index")
