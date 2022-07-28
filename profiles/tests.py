@@ -1,4 +1,3 @@
-from django.test import TestCase
 from django.contrib.auth.models import User
 from django.urls import reverse
 from .models import Profiles
@@ -9,7 +8,7 @@ import pytest
 
 @pytest.mark.django_db
 def test_index_url(client):
-    path = reverse("profiles_index")
+    path = reverse("profiles:index")
     assert path == "/profiles/"
     response = client.get(path)
     content = response.content.decode()
@@ -30,7 +29,7 @@ def test_profile_url(client):
 
     Profiles.objects.create(user=User.objects.get(id=1), favorite_city="Paris")
 
-    path = reverse("profile", kwargs={"username": "JohnDoe"})
+    path = reverse("profiles:profile", kwargs={"username": "JohnDoe"})
     assert path == "/profiles/JohnDoe/"
     response = client.get(path)
     content = response.content.decode()

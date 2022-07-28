@@ -35,8 +35,8 @@
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active"><a href="{% url 'index' %}" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="{% url 'profiles_index' %}" class="nav-link">Profiles</a></li>
-					<li class="nav-item"><a href="{% url 'lettings_index' %}" class="nav-link">Lettings</a></li>
+					<li class="nav-item"><a href="{% url 'profiles:index' %}" class="nav-link">Profiles</a></li>
+					<li class="nav-item"><a href="{% url 'lettings:index' %}" class="nav-link">Lettings</a></li>
 				</ul>
 			</div>
 		</div>
@@ -70,7 +70,7 @@
                                 <div class="d-flex align-items-center">
                                     <div class="user-img" style="background-image: url(../static/pacific/images/oc_lettings_logo.png)"></div>
                                         <div class="pl-3">
-                                            <p class="name"><a href="{% url 'profile' username=profile.user.username %}">
+                                            <p class="name"><a href="{% url 'profiles:profile' username=profile.user.username %}">
                                                 {{ profile.user.username }}
                                             </a></p>
                                 <span class="position">USA</span>
