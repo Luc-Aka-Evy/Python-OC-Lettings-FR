@@ -1,4 +1,3 @@
-from django.test import TestCase
 from django.urls import reverse
 from .models import Letting, Address
 import pytest
@@ -18,7 +17,7 @@ def test_letting_url(client):
 
     Letting.objects.create(title="This is Paris", address=Address.objects.get(id=1))
 
-    path = reverse("letting", kwargs={"letting_id": 1})
+    path = reverse("lettings:letting", kwargs={"letting_id": 1})
     assert path == "/lettings/1/"
     response = client.get(path)
     content = response.content.decode()
@@ -29,7 +28,7 @@ def test_letting_url(client):
 
 @pytest.mark.django_db
 def test_index_url(client):
-    path = reverse("lettings_index")
+    path = reverse("lettings:index")
     assert path == "/lettings/"
     response = client.get(path)
     content = response.content.decode()
